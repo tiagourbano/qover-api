@@ -8,11 +8,10 @@ const authService = require('../services/auth-service');
 exports.post = async(req, res, next) => {
     let contract = new ValidationContract();
     console.log(req.body);
-    contract.hasMinLen(req.body.name, 3, 'O nome deve conter pelo menos 3 caracteres');
-    contract.isEmail(req.body.email, 'E-mail inválido');
-    contract.hasMinLen(req.body.password, 6, 'A senha deve conter pelo menos 6 caracteres');
+    contract.hasMinLen(req.body.name, 3, 'Name should have ate least 6 characters');
+    contract.isEmail(req.body.email, 'Invalid email');
+    contract.hasMinLen(req.body.password, 6, 'Passowrd should have at least 6 characters');
 
-    // Se os dados forem inválidos
     if (!contract.isValid()) {
         res.status(400).send(contract.errors()).end();
         return;
