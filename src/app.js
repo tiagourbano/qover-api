@@ -8,6 +8,7 @@ const config = require('./config');
 const app = express();
 
 // Connect to database
+mongoose.Promise = global.Promise;
 mongoose.connect(config.connectionString, {
     useMongoClient: true
 });
