@@ -10,7 +10,7 @@ const app = express();
 // Connect to database
 mongoose.Promise = global.Promise;
 mongoose.connect(config.connectionString, {
-    useMongoClient: true
+  useMongoClient: true
 });
 
 // Load Models
@@ -20,18 +20,18 @@ const Customer = require('./models/customer');
 const customerRoute = require('./routes/customer-route');
 
 app.use(bodyParser.json({
-    limit: '1mb'
+  limit: '1mb'
 }));
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }));
 
 // Habilita o CORS
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
 });
 
 app.use('/customer', customerRoute);
